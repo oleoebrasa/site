@@ -1,9 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Painel — Óleo & Brasa</title>
+  <script>
+    window.CMS_CONFIGURATION = {
+      config: {
+        backend: {
+          name: 'github',
+          repo: 'oleoebrasa/site',
+          branch: 'main',
+          base_url: 'https://oleoebrasa.com.br',
+          client_id: 'Ov231iBLY0wqAV28wMaX'
+        },
+        media_folder: "/images/uploads",
+        public_folder: "/images/uploads",
+        collections: [
+          {
+            name: "posts",
+            label: "Posts",
+            folder: "posts",
+            create: true,
+            slug: "{{year}}-{{month}}-{{day}}-{{titulo}}",
+            fields: [
+              { label: "Título", name: "titulo", widget: "string" },
+              { label: "Categoria", name: "categoria", widget: "select",
+                options: ["Carro", "BBQ & Fogo", "Ferramentas", "Armas", "Casa", "Construção"] },
+              { label: "Data", name: "date", widget: "datetime",
+                date_format: "YYYY-MM-DD", time_format: "HH:mm" },
+              { label: "Link do Vídeo", name: "video", widget: "string", required: false },
+              { label: "Resumo", name: "resumo", widget: "text" },
+              { label: "Conteúdo Completo", name: "corpo", widget: "markdown" }
+            ]
+          }
+        ]
+      }
+    };
+  </script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/netlify-cms@2.10.192/dist/netlify-cms.css" />
 </head>
 <body>
