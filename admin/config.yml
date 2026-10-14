@@ -3,7 +3,6 @@ backend:
   repo: oleoebrasa/site
   branch: main
   base_url: https://site.oleoebrasa.workers.dev
-  auth_endpoint: /admin
 
 media_folder: "/images/uploads"
 public_folder: "/images/uploads"
