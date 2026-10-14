@@ -5,43 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Painel — Óleo & Brasa</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/netlify-cms@2.10.192/dist/netlify-cms.css" />
-  <style>
-    body { margin: 0; background: #1a1a1a; }
-    .loading { 
-      color: #fff; 
-      padding: 4rem 2rem; 
-      text-align: center;
-      font-family: Arial, sans-serif;
-      font-size: 1.2rem;
-    }
-    .spinner {
-      display: inline-block;
-      width: 40px;
-      height: 40px;
-      border: 3px solid #333;
-      border-top-color: #ff6b00;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin-bottom: 1rem;
-    }
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-  </style>
+  <script src="auth.js"></script>
 </head>
 <body>
-  <div class="loading">
-    <div class="spinner"></div>
-    <div>Carregando painel...</div>
-  </div>
   <script src="https://cdn.jsdelivr.net/npm/netlify-cms@2.10.192/dist/netlify-cms.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      if (typeof CMS !== 'undefined') {
-        CMS.init();
-      } else {
-        document.querySelector('.loading').innerHTML = 
-          '❌ Erro ao carregar. <br>Atualize a página (F5).';
+    CMS.init({
+      config: {
+        backend: {
+          name: 'github',
+          repo: 'oleoebrasa/site',
+          branch: 'main',
+          base_url: window.location.origin
+        },
+        media_folder: "/images/uploads",
+        public_folder: "/images/uploads",
+        collections: [
+          {
+            name: "posts",
+            label: "Posts",
+            folder: "posts",
+            create: true,
+            slug: "{{year}}-{{month}}-{{day}}-{{titulo}}",
+            fields: [
+              { label: "Título", name: "titulo", widget: "string" },
+              { label: "Categoria", name: "categoria", widget: "select", 
+                options: ["Carro", "BBQ & Fogo", "Ferramentas", "Armas", "Casa", "Construção"] },
+              { label: "Data", name: "date", widget: "datetime", 
+                date_format: "YYYY-MM-DD", time_format: "HH:mm" },
+              { label: "Link do Vídeo", name: "video", widget: "string", required: false },
+              { label: "Resumo", name: "resumo", widget: "text" },
+              { label: "Conteúdo Completo", name: "corpo", widget: "markdown" }
+            ]
+          }
+        ]
       }
     });
   </script>
