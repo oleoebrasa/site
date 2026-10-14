@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
+<head> 
+    <script>
+// Carrega os posts automaticamente
+fetch('/posts/posts.json')
+.then(r => r.json())
+.then(posts => {
+  console.log(posts);
+})
+.catch(() => console.log('Aguardando primeiro post...'));
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Óleo & Brasa | Trabalho de Verdade, Sem Firula</title>
