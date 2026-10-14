@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: oleoebrasa/site-
+repo: oleoebrasa/site-
   branch: main
   base_url: https://oleoebrasa.com.br
 
