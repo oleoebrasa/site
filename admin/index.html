@@ -1,17 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Painel — Óleo & Brasa</title>
-  <script src="https://cdn.jsdelivr.net/npm/netlify-cms@2.10.192/dist/netlify-cms.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/netlify-cms@2.10.192/dist/netlify-cms.css" />
   <style>
-    body { margin: 0; font-family: Arial, sans-serif; background: #1a1a1a; }
+    body { margin: 0; background: #1a1a1a; }
+    .loading { 
+      color: #fff; 
+      padding: 4rem 2rem; 
+      text-align: center;
+      font-family: Arial, sans-serif;
+      font-size: 1.2rem;
+    }
+    .spinner {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      border: 3px solid #333;
+      border-top-color: #ff6b00;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 1rem;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
   </style>
 </head>
 <body>
+  <div class="loading">
+    <div class="spinner"></div>
+    <div>Carregando painel...</div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/netlify-cms@2.10.192/dist/netlify-cms.js"></script>
   <script>
-    CMS.init();
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof CMS !== 'undefined') {
+        CMS.init();
+      } else {
+        document.querySelector('.loading').innerHTML = 
+          '❌ Erro ao carregar. <br>Atualize a página (F5).';
+      }
+    });
   </script>
 </body>
 </html>
