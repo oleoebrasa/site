@@ -2,7 +2,6 @@ backend:
   name: github
   repo: oleoebrasa/site
   branch: main
-  base_url: https://oleoebrasa.com.br
 
 media_folder: "/images/uploads"
 public_folder: "/images/uploads"
@@ -15,8 +14,10 @@ collections:
     slug: "{{year}}-{{month}}-{{day}}-{{titulo}}"
     fields:
       - { label: "Título", name: "titulo", widget: "string" }
-      - { label: "Categoria", name: "categoria", widget: "select", options: ["Carro", "BBQ & Fogo", "Ferramentas", "Armas", "Casa", "Construção"] }
-      - { label: "Data", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: "HH:mm" }
+      - { label: "Categoria", name: "categoria", widget: "select", 
+          options: ["Carro", "BBQ & Fogo", "Ferramentas", "Armas", "Casa", "Construção"] }
+      - { label: "Data", name: "date", widget: "datetime", 
+          date_format: "YYYY-MM-DD", time_format: "HH:mm" }
       - { label: "Link do Vídeo", name: "video", widget: "string", required: false }
       - { label: "Resumo", name: "resumo", widget: "text" }
       - { label: "Conteúdo Completo", name: "corpo", widget: "markdown" }
