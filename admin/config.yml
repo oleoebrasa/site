@@ -2,20 +2,48 @@ backend:
   name: github
   repo: oleoebrasa/site
   branch: main
-
-media_folder: "/images/uploads"
-public_folder: "/images/uploads"
-
+  base_url: https://oauth.oleoebrasa.com.br
+  auth_endpoint: auth
+locale: pt
+publish_mode: simple
+media_folder: images/uploads
+public_folder: /images/uploads
 collections:
-  - name: posts
-    label: Posts
-    folder: posts
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{titulo}}"
-    fields:
-      - { label: "Título", name: "titulo", widget: "string" }
-      - { label: "Categoria", name: "categoria", widget: "select", options: ["Carro", "BBQ & Fogo", "Ferramentas", "Armas", "Casa", "Construção"] }
-      - { label: "Data", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: "HH:mm" }
-      - { label: "Link do Vídeo", name: "video", widget: "string", required: false }
-      - { label: "Resumo", name: "resumo", widget: "text" }
-      - { label: "Conteúdo Completo", name: "corpo", widget: "markdown" }
+  - name: conteudo
+    label: Conteúdo do site
+    files:
+      - name: site
+        label: Vídeo, posts e eventos
+        file: conteudo.json
+        format: json
+        fields:
+          - label: Vídeo da semana
+            name: video
+            widget: object
+            fields:
+              - { label: Título, name: titulo, widget: string }
+              - { label: Descrição, name: descricao, widget: text }
+              - { label: Link do YouTube (cole o endereço do vídeo), name: link, widget: string, required: false }
+          - label: Posts
+            name: posts
+            widget: list
+            summary: "{{fields.data}} — {{fields.titulo}}"
+            fields:
+              - { label: Título, name: titulo, widget: string }
+              - { label: "Publicar este post?", name: publicado, widget: boolean, default: true, hint: "Desligue para guardar como rascunho (o site não mostra)." }
+              - { label: Categoria, name: categoria, widget: select, options: [Ferramentas, Carro, BBQ, Armas, Casa, Construção] }
+              - { label: Data de publicação, name: data, widget: datetime, date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD", hint: "Data futura = o post só aparece no site nesse dia (agendamento)." }
+              - { label: Foto de capa (opcional), name: imagem, widget: image, required: false, hint: "Prefira fotos de até 1 MB." }
+              - { label: Resumo (aparece no card), name: resumo, widget: text }
+              - { label: Link do vídeo do YouTube (opcional), name: video, widget: string, required: false }
+              - { label: Matéria completa, name: corpo, widget: markdown, required: false, buttons: [bold, italic, link, heading-two, heading-three, quote, bulleted-list, numbered-list], editor_components: [image], hint: "Use o botão de imagem para colocar fotos no meio do texto." }
+          - label: Eventos
+            name: eventos
+            widget: list
+            summary: "{{fields.data}} — {{fields.titulo}}"
+            fields:
+              - { label: Título, name: titulo, widget: string }
+              - { label: Categoria, name: categoria, widget: select, options: [Ferramentas, Carro, BBQ, Armas, Casa, Construção] }
+              - { label: Data, name: data, widget: datetime, date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD" }
+              - { label: Descrição, name: descricao, widget: text }
+              - { label: Link de detalhes/inscrição (opcional), name: link, widget: string, required: false }
