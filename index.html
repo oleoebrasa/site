@@ -1,19 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head> 
-    <script>
-// Carrega os posts automaticamente
-fetch('/posts/posts.json')
-.then(r => r.json())
-.then(posts => {
-  console.log(posts);
-})
-.catch(() => console.log('Aguardando primeiro post...'));
-</script>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Óleo & Brasa | Trabalho de Verdade, Sem Firula</title>
-    <script src="config.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
@@ -372,12 +362,22 @@ fetch('/posts/posts.json')
             .logo-texto { font-size: 2.5rem; }
             .logo-texto span { font-size: 3rem; }
         }
+        #pag-post h2 { font-size: 2rem; color: var(--dourado); margin: 0.5rem 0 1.5rem; }
+        .post-texto { color: #A89E8E; }
+        .post-texto p, .post-texto ul, .post-texto ol, .post-texto blockquote { margin-bottom: 1rem; }
+        .post-texto h2, .post-texto h3, .post-texto h4 { color: var(--dourado); margin: 1.5rem 0 0.75rem; }
+        .post-texto ul, .post-texto ol { padding-left: 1.5rem; }
+        .post-texto a { color: var(--dourado); }
+        .post-texto blockquote { border-left: 3px solid var(--dourado); padding-left: 1rem; }
+        .post-texto img, .capa-post { max-width: 100%; height: auto; display: block; margin: 0 0 1.5rem; }
+        .post-texto .video-espaco { margin-bottom: 1.5rem; }
+        .evento p { font-size: 0.9rem; color: #999; }
     </style>
 </head>
 <body>
     <header class="cabecalho">
         <div class="cabecalho-conteudo">
-            <a href="#home" class="marca" onclick="abrirAba('home'); return false;">
+            <a href="#home" class="marca" data-ir="home">
                 <span class="marca-texto">ÓLEO <span class="e-pequeno">&</span> BRASA</span>
             </a>
             <nav class="navegacao">
@@ -494,7 +494,7 @@ fetch('/posts/posts.json')
                     </div>
 
                     <div class="bloco-lateral">
-                        <h2>PRÓXIMOS EVENTOS</h2>
+                        <h2 id="h-eventos">PRÓXIMOS EVENTOS</h2>
                         <div class="evento">
                             <div class="evento-data">18/10/2026 — Sábado</div>
                             <div class="evento-titulo">Encontro de Carros — Região Sul</div>
@@ -513,7 +513,7 @@ fetch('/posts/posts.json')
                             <p style="font-size:0.9rem; color:#999;">Regulamento, inscrição e dicas de preparo.</p>
                             <span class="evento-tipo">Armas</span>
                         </div>
-                        <a href="#eventos" style="color:var(--brasa); font-weight:700; text-decoration:none; display:inline-block; margin-top:0.5rem;" onclick="abrirAba('eventos'); return false;">Ver todos →</a>
+                        <a href="#eventos" style="color:var(--brasa); font-weight:700; text-decoration:none; display:inline-block; margin-top:0.5rem;" data-ir="eventos">Ver todos →</a>
                     </div>
                 </div>
             </div>
@@ -643,6 +643,15 @@ fetch('/posts/posts.json')
         </div>
     </section>
 
+    <section id="pag-post" class="secao-conteudo">
+        <article class="post">
+            <div class="post-cabecalho"><span class="categoria" id="post-categoria"></span><span class="data-post" id="post-data"></span></div>
+            <h2 id="post-titulo"></h2>
+            <div class="post-texto" id="post-corpo"></div>
+            <a href="#home" class="ler-mais" data-ir="home">← Voltar</a>
+        </article>
+    </section>
+
     <footer class="rodape">
         <div>
             <a href="https://instagram.com/oleoebrasa" target="_blank">Instagram</a>
@@ -653,39 +662,8 @@ fetch('/posts/posts.json')
         <p style="margin-top: 1rem;">© 2026 Óleo & Brasa — Trabalho de Verdade, Sem Firula</p>
     </footer>
 
-    <script>
-        function abrirAba(pagina) {
-            document.querySelectorAll('.secao-conteudo').forEach(s => s.classList.remove('ativa'));
-            document.getElementById('pag-' + pagina).classList.add('ativa');
-            document.querySelectorAll('.navegacao a').forEach(a => a.classList.remove('ativo'));
-            document.querySelector(`[data-pagina="${pagina}"]`).classList.add('ativo');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        document.querySelectorAll('.navegacao a').forEach(aba => {
-            aba.addEventListener('click', e => {
-                e.preventDefault();
-                abrirAba(aba.getAttribute('data-pagina'));
-            });
-        });
-
-        // Carrega conteúdo salvo do painel
-        document.addEventListener('DOMContentLoaded', function() {
-            const salvo = JSON.parse(localStorage.getItem('conteudoSite'));
-            const conteudo = salvo || (typeof CONTEUDO_SITE !== 'undefined' ? CONTEUDO_SITE : null);
-            
-            if (conteudo && conteudo.videoSemana) {
-                const tituloEl = document.getElementById('titulo-video-semana');
-                const descEl = document.getElementById('desc-video-semana');
-                const espacoEl = document.getElementById('espaco-video');
-                
-                if (tituloEl && conteudo.videoSemana.titulo) tituloEl.textContent = conteudo.videoSemana.titulo;
-                if (descEl && conteudo.videoSemana.descricao) descEl.textContent = conteudo.videoSemana.descricao;
-                if (espacoEl && conteudo.videoSemana.youtubeEmbed) {
-                    espacoEl.innerHTML = conteudo.videoSemana.youtubeEmbed;
-                }
-            }
-        });
-    </script>
+    <script src="vendor/purify.min.js"></script>
+    <script src="vendor/marked.umd.js"></script>
+    <script src="site.js"></script>
 </body>
 </html>

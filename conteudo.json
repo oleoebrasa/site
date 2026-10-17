@@ -1,0 +1,92 @@
+{
+  "video": {
+    "titulo": "Título do vídeo mais recente — direto ao ponto",
+    "descricao": "Descrição curta do que foi mostrado. Dica prática, resultado direto. Sem enrolação.",
+    "link": ""
+  },
+  "posts": [
+    {
+      "titulo": "Como preparar parede para reboco sem erro",
+      "categoria": "Construção",
+      "data": "2026-10-07",
+      "resumo": "Passo a passo que ninguém mostra: limpeza, argamassa e tempo de cura. Evita rachadura e serviço caído depois.",
+      "video": "",
+      "corpo": "",
+      "publicado": true,
+      "imagem": ""
+    },
+    {
+      "titulo": "Troca de óleo: você mesmo faz e economiza",
+      "categoria": "Carro",
+      "data": "2026-10-06",
+      "resumo": "Ferramenta certa, óleo certo, filtro certo. O que a oficina não te conta e cobra caro pra fazer.",
+      "video": "",
+      "corpo": "",
+      "publicado": true,
+      "imagem": ""
+    },
+    {
+      "titulo": "Fogo baixo ou alto? O ponto exato da carne",
+      "categoria": "BBQ",
+      "data": "2026-10-05",
+      "resumo": "Tipo de lenha, distância da brasa e tempo de cada corte. Não é sorte, é técnica que funciona.",
+      "video": "",
+      "corpo": "",
+      "publicado": true,
+      "imagem": ""
+    },
+    {
+      "titulo": "Afiação que dura: lixa, pedra ou máquina?",
+      "categoria": "Ferramentas",
+      "data": "2026-10-04",
+      "resumo": "O método que serve pra todo mundo e não precisa gastar caro. Tesoura, faca, serrote — tudo cortando de novo.",
+      "video": "",
+      "corpo": "",
+      "publicado": true,
+      "imagem": ""
+    },
+    {
+      "titulo": "Limpeza após uso: passo a passo essencial",
+      "categoria": "Armas",
+      "data": "2026-10-03",
+      "resumo": "Óleo nas partes certas, cuidado com a câmara, armazenamento. Sua peça funcionando sempre e durando gerações.",
+      "video": "",
+      "corpo": "",
+      "publicado": true,
+      "imagem": ""
+    },
+    {
+      "titulo": "Caixa de ferramentas: o que não pode faltar",
+      "categoria": "Casa",
+      "data": "2026-10-02",
+      "resumo": "Chave, fenda, alicate, fita. O básico que resolve 90% dos problemas sem chamar ninguém.",
+      "video": "",
+      "corpo": "",
+      "publicado": true,
+      "imagem": ""
+    }
+  ],
+  "eventos": [
+    {
+      "titulo": "Encontro de Carros — Região Sul",
+      "categoria": "Carro",
+      "data": "2026-10-18",
+      "descricao": "Exposição, som, troca de peças. Venha trocar uma ideia.",
+      "link": ""
+    },
+    {
+      "titulo": "Churrasco Oficina — Troca de Técnicas",
+      "categoria": "BBQ",
+      "data": "2026-10-25",
+      "descricao": "Fogo na lenha e conversa sobre construção. Aberto a todos.",
+      "link": ""
+    },
+    {
+      "titulo": "Competição de Tiro — Etapa Regional",
+      "categoria": "Armas",
+      "data": "2026-11-01",
+      "descricao": "Regulamento, inscrição e dicas de preparo.",
+      "link": ""
+    }
+  ]
+}
